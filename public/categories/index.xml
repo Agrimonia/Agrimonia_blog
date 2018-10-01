@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Agrimonia’s blog</title>
+    <link>https://agrimonia.me/categories/</link>
+    <description>Recent content in Categories on Agrimonia’s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="https://agrimonia.me/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Devops</title>
+      <link>https://agrimonia.me/categories/devops/</link>
+      <pubDate>Sat, 30 Jun 2018 22:37:19 +0800</pubDate>
+      
+      <guid>https://agrimonia.me/categories/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>前端</title>
+      <link>https://agrimonia.me/categories/%E5%89%8D%E7%AB%AF/</link>
+      <pubDate>Mon, 10 Sep 2018 03:13:55 +0800</pubDate>
+      
+      <guid>https://agrimonia.me/categories/%E5%89%8D%E7%AB%AF/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

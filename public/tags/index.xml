@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Agrimonia’s blog</title>
+    <link>https://agrimonia.me/tags/</link>
+    <description>Recent content in Tags on Agrimonia’s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 30 Jun 2018 22:37:19 +0800</lastBuildDate>
+    
+	<atom:link href="https://agrimonia.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker</title>
+      <link>https://agrimonia.me/tags/docker/</link>
+      <pubDate>Sat, 30 Jun 2018 22:37:19 +0800</pubDate>
+      
+      <guid>https://agrimonia.me/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Graphql</title>
+      <link>https://agrimonia.me/tags/graphql/</link>
+      <pubDate>Mon, 10 Sep 2018 03:13:55 +0800</pubDate>
+      
+      <guid>https://agrimonia.me/tags/graphql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Svg</title>
+      <link>https://agrimonia.me/tags/svg/</link>
+      <pubDate>Sat, 09 Jun 2018 00:03:55 +0800</pubDate>
+      
+      <guid>https://agrimonia.me/tags/svg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vue</title>
+      <link>https://agrimonia.me/tags/vue/</link>
+      <pubDate>Mon, 10 Sep 2018 03:13:55 +0800</pubDate>
+      
+      <guid>https://agrimonia.me/tags/vue/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
