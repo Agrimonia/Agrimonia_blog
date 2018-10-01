@@ -74,6 +74,4 @@ hasCJKLanguage = true
 
 # Add additional social link entries underneath
 [social]
-	facebook-square = "https://www.facebook.com/nodejh"
-	twitter-square = "https://www.twitter.com/nodejh"
-	github-square = "https://www.github.com/nodejh"
+	github-square = "https://www.github.com/agrimonia"
