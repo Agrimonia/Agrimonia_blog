@@ -6,7 +6,7 @@
     <description>Recent content in Docker on Agrimonia’s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Sep 2018 03:13:55 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Jun 2018 22:37:19 +0800</lastBuildDate>
     
 	<atom:link href="https://agrimonia.me/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>[译] Docker for devs：创建一个开发版镜像</title>
       <link>https://agrimonia.me/posts/dockerfordevs1/</link>
-      <pubDate>Mon, 10 Sep 2018 03:13:55 +0800</pubDate>
+      <pubDate>Sat, 30 Jun 2018 22:37:19 +0800</pubDate>
       
       <guid>https://agrimonia.me/posts/dockerfordevs1/</guid>
       <description>Docker for devs：创建一个开发版镜像 在腾讯云+翻译社的第一期活动中翻译了这篇文章，因为被官方采纳了，所以在云+社区的云计算专栏里也能看到这篇译</description>

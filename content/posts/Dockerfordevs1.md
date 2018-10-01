@@ -1,6 +1,6 @@
 +++
 title = "[译] Docker for devs：创建一个开发版镜像"
-date = 2018-09-10T03:13:55+08:00
+date = 2018-06-30T22:37:19+08:00
 tags = ["Docker"]
 categories = ["DevOps"]
 draft = false
