@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Agrimonia’s blog</title>
-    <link>agrimonia.me/</link>
+    <link>/</link>
     <description>Recent content on Agrimonia’s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 10 Sep 2018 03:13:55 +0800</lastBuildDate>
     
-	<atom:link href="agrimonia.me/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Vue-Apollo 官方文档拾遗</title>
-      <link>agrimonia.me/posts/vue-apollo1/</link>
+      <link>/posts/vue-apollo1/</link>
       <pubDate>Mon, 10 Sep 2018 03:13:55 +0800</pubDate>
       
-      <guid>agrimonia.me/posts/vue-apollo1/</guid>
+      <guid>/posts/vue-apollo1/</guid>
       <description>Vue-Apollo 官方文档拾遗 实习期间做的 Vue 项目因为用到了 GraphQL，自然接触了 Vue-Apollo。Vue-Apollo 的文档用起来没有很大问题，但它</description>
     </item>
     
     <item>
       <title>[译] Docker for devs：创建一个开发版镜像</title>
-      <link>agrimonia.me/posts/dockerfordevs1/</link>
+      <link>/posts/dockerfordevs1/</link>
       <pubDate>Mon, 10 Sep 2018 03:13:55 +0800</pubDate>
       
-      <guid>agrimonia.me/posts/dockerfordevs1/</guid>
+      <guid>/posts/dockerfordevs1/</guid>
       <description>Docker for devs：创建一个开发版镜像 在腾讯云+翻译社的第一期活动中翻译了这篇文章，因为被官方采纳了，所以在云+社区的云计算专栏里也能看到这篇译</description>
     </item>
     
     <item>
       <title>Vue 封装表单类组件时的数据绑定方式</title>
-      <link>agrimonia.me/posts/vue-listener/</link>
+      <link>/posts/vue-listener/</link>
       <pubDate>Sun, 09 Sep 2018 10:13:55 +0800</pubDate>
       
-      <guid>agrimonia.me/posts/vue-listener/</guid>
+      <guid>/posts/vue-listener/</guid>
       <description>Vue 封装表单类组件时的数据绑定方式 对于表单类组件，数据双向绑定可以大大简化数据流的复杂度，所以用 vue 的时候我倾向于尽可能使用 v-model 来减少工作量。 v-model 是</description>
     </item>
     
     <item>
       <title>Font-Awesome-SVG-PNG 思路分析</title>
-      <link>agrimonia.me/posts/svg2pngcode/</link>
+      <link>/posts/svg2pngcode/</link>
       <pubDate>Sat, 09 Jun 2018 00:03:55 +0800</pubDate>
       
-      <guid>agrimonia.me/posts/svg2pngcode/</guid>
+      <guid>/posts/svg2pngcode/</guid>
       <description>Font-Awesome-SVG-PNG 思路分析 微软俱乐部的 Hackathon 的时候写了 iCon4U 这个项目。因为需要出 png 格式的图，参考了 Font-Awesome-SVG-PNG 这个项目，大致看了一下它的源码，写一写我的理解。 现在的代码比较复</description>
     </item>
     

@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Agrimonia’s blog</title>
-    <link>agrimonia.me/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on Agrimonia’s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-	<atom:link href="agrimonia.me/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Devops</title>
-      <link>agrimonia.me/categories/devops/</link>
+      <link>/categories/devops/</link>
       <pubDate>Mon, 10 Sep 2018 03:13:55 +0800</pubDate>
       
-      <guid>agrimonia.me/categories/devops/</guid>
+      <guid>/categories/devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>前端</title>
-      <link>agrimonia.me/categories/%E5%89%8D%E7%AB%AF/</link>
+      <link>/categories/%E5%89%8D%E7%AB%AF/</link>
       <pubDate>Mon, 10 Sep 2018 03:13:55 +0800</pubDate>
       
-      <guid>agrimonia.me/categories/%E5%89%8D%E7%AB%AF/</guid>
+      <guid>/categories/%E5%89%8D%E7%AB%AF/</guid>
       <description></description>
     </item>
     
