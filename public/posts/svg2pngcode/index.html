@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 
+			
+  
+    <meta name="twitter:card" content="summary"/>
+    
+      <meta name="twitter:image" content="images/avatar.png" />
+    
+  
+  
+  <meta name="twitter:title" content="Font-Awesome-SVG-PNG 思路分析"/>
+  <meta name="twitter:description" content="Font-Awesome-SVG-PNG 思路分析 微软俱乐部的 Hackathon 的时候写了 iCon4U 这个项目。因为需要出 png 格式的图，参考了 Font-Awesome-SVG-PNG 这个项目，大致看了一下它的源码，写一写我的理解。 现在的代码比较复"/>
+  
+    <meta name="twitter:site" content="@agrimon15431507"/>
+  
+  
+  
+  
+    <meta name="twitter:creator" content="@Agrimonia"/>
+  
+
+
+
+		
+		<meta name="author" content="Agrimonia">
+		<meta name="description" content="Agrimonia的个人博客">
+		<meta name="generator" content="Hugo 0.49" />
+		<title>Font-Awesome-SVG-PNG 思路分析 &middot; Agrimonia’s blog</title>
+		<link rel="shortcut icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/highlight.css">
+
+		
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		
+
+		
+		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Agrimonia’s blog" />
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href=''> <span class="arrow">←</span>Home</a>
+	
+	<a href='posts'>Archive</a>
+	<a href='tags'>Tags</a>
+	<a href='about'>About</a>
+
+	
+
+	
+	<a class="cta" href="/index.xml">Subscribe</a>
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        Font-Awesome-SVG-PNG 思路分析
+                    </h1>
+                    <h2 class="headline">
+                    Jun 9, 2018 00:03
+                    · 849 words
+                    · 2 minute read
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="tags/svg">SVG</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                  
+                    <div id="toc">
+                      <nav id="TableOfContents">
+<ul>
+<li><a href="#font-awesome-svg-png-思路分析">Font-Awesome-SVG-PNG 思路分析</a></li>
+</ul>
+</nav>
+                    </div>
+                  
+                
+                <section id="post-body">
+                    
+
+<h1 id="font-awesome-svg-png-思路分析">Font-Awesome-SVG-PNG 思路分析</h1>
+
+<p>微软俱乐部的 Hackathon 的时候写了 <a href="https://github.com/agrimonia/iCon4U">iCon4U</a> 这个项目。因为需要出 png 格式的图，参考了 <a href="https://github.com/encharm/Font-Awesome-SVG-PNG/">Font-Awesome-SVG-PNG</a> 这个项目，大致看了一下它的源码，写一写我的理解。</p>
+
+<p>现在的代码比较复杂，我回滚到了14年。发现前几个 commit 除了简单地上传了一堆 svg, png 格式的 icons以外，只有一个 js 文件，核心代码就这几行：</p>
+
+<pre><code class="language-javascript">if (argv.color &amp;&amp; argv.png) {
+  commandChecks.push(new Promise(function (resolve, reject) {
+// @todo: surely there's a module in npm that allows to do command checks automagically?
+    var convertTest = require('child_process').spawn('rsvg-convert', ['--help']);
+    convertTest.once('error', function () {
+      throw Error(&quot;Error: cannot start `rsvg-convert` command. Please install it or verify that it is in your PATH.&quot;);
+    });
+    convertTest.once('exit', function (code) {
+      if (code) return reject();
+      resolve();
+    });
+  }));
+}
+
+Promise.all(commandChecks).then(function () {
+  return libFontAwesome.generate(argv);
+}).catch(function (err) {
+  console.error(&quot;Caught error&quot;, err);
+});
+</code></pre>
+
+<p>可以看到转换出 svg 是通过 <code>libFontAwesome.generate(argv)</code>实现的，png 则额外开了一个 node 子进程，通过<code>spawn</code>执行了<code>rsvg-convert</code>命令，这是用来将 svg 转化成 png 的。</p>
+
+<p>接下来的一个 commit 进行了一次重构，剥离出了<code>generateSvg()</code>这个函数</p>
+
+<pre><code class="language-javascript">var template =
+'&lt;svg width=&quot;1792&quot; height=&quot;1792&quot; viewBox=&quot;{shiftX} -256 1792 1792&quot;&gt;' +
+'&lt;g transform=&quot;scale(1 -1) translate(0 -1280)&quot;&gt;' +
+'&lt;path d=&quot;{path}&quot; fill=&quot;{color}&quot; /&gt;' +
+'&lt;/g&gt;' +
+'&lt;/svg&gt;';
+/***********************/
+function generateSvg(name, params) {
+  var svgFolder = pathModule.join(params.destFolder, params.color, 'svg');
+  mkdirp.sync(svgFolder);
+
+  return new Promise(function(resolve, reject) {
+    var outSvg = fs.createWriteStream(pathModule.join(svgFolder, name + '.svg'));
+    svgo.optimize(getIconSvg(params), function(result) {
+      outSvg.write('&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;' +'\n');
+      outSvg.end(result.data);
+      resolve();
+    });
+  });
+}
+</code></pre>
+
+<p>思路是用<code>replace</code>去修改一个 svg 模板。</p>
+
+<p>目前的 <code>getIconsvg()</code>函数：</p>
+
+<pre><code class="language-javascript">function getIconSvg(params, size) {
+  let {path, color, advWidth} = params;
+  const PIXEL_WIDTH = advWidth &gt; 2048 ? 18 : (advWidth &gt; 1792 ? 16 : 14);
+  const PIXEL_HEIGHT = 14;
+  
+  const BASE_WIDTH = PIXEL_WIDTH * PIXEL;
+  const BASE_HEIGHT = PIXEL_HEIGHT * PIXEL;
+  
+  var options = optionsForSize(PIXEL_WIDTH, PIXEL_HEIGHT,
+    parseInt((BASE_WIDTH / BASE_HEIGHT) * size), size,
+    params.addPadding);
+
+  let {paddingLeft, paddingTop, paddingRight, paddingBottom} = options;  
+  let shiftX = -(-(BASE_WIDTH - advWidth)/2 - paddingLeft);
+  let shiftY = -(-2*PIXEL - paddingTop);  
+  let width = BASE_WIDTH + paddingLeft + paddingRight;
+  let height = BASE_HEIGHT + paddingBottom + paddingTop;
+
+  const result =
+`&lt;svg width=&quot;${width}&quot; height=&quot;${height}&quot; viewBox=&quot;0 0 ${width} ${height}&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
+  &lt;g transform=&quot;translate(${shiftX} ${shiftY})&quot;&gt;
+  &lt;g transform=&quot;scale(1 -1) translate(0 -1280)&quot;&gt;
+  &lt;path d=&quot;${path}&quot; fill=&quot;${color}&quot; /&gt;
+  &lt;/g&gt;&lt;/g&gt;
+&lt;/svg&gt;`;
+  
+  return result;
+}
+</code></pre>
+
+<p>最终使用模板字符串，但是原理没有很大变化，就是通过一个 svg 模板，传入 params 解构之后拼成 icon 对应的 svg 标签。</p>
+
+<p>我想知道path是怎么来的，怎么从 font-awesome 中得出对应 icon 的 path？</p>
+
+<p>继续往下看：</p>
+
+<pre><code class="language-javascript">console.log(&quot;Downloading latest icons.yml ...&quot;);
+request('https://raw2.github.com/FortAwesome/Font-Awesome/master/src/icons.yml', function(error, response, iconsYaml) {
+  console.log(&quot;Downloading latest fontawesome-webfont.svg ...&quot;);
+  request('https://raw2.github.com/FortAwesome/Font-Awesome/master/fonts/fontawesome-webfont.svg', function(error, response, fontData) {
+    fontData = fontData.toString('utf8');
+    var icons = yaml.safeLoad(iconsYaml).icons;
+    icons.forEach(function(icon) {
+      code2name[icon.unicode] = icon.id;
+    });
+    lines = fontData.split('\n');
+    async.eachLimit(lines, 4, function(line, cb) {
+      var m = line.match(/^&lt;glyph unicode=&quot;&amp;#x([^&quot;]+);&quot;\s*(?:horiz-adv-x=&quot;(\d+)&quot;)?\s*d=&quot;([^&quot;]+)&quot;/);
+      if(m) {
+        var str = m[1];
+        if(code2name[str]) {
+          generateIcon(code2name[str], m[3], {advWidth: m[2]?m[2]:1536, color: argv.color }, cb);
+        } else {
+          cb();
+        }
+      } else
+        cb();
+    }, function(err, cb) {//略});
+</code></pre>
+
+<p>到这里思路就很明显了：</p>
+
+<ol>
+<li>获取到了 icons.yml 后，在<code>icons.forEach</code> 中用<code>code2name</code>拿到 icons name。</li>
+<li>用<code>line.match</code>一行正则拿到 path 和 尺寸。</li>
+</ol>
+
+<hr />
+
+<p>所以它的思路是一行<code>foreach</code>一次转换完，但是我们做单 icon 的转换可以参考这种正则匹配路径的思路，拿到 icon 的路径传给 path。</p>
+
+                </section>
+            </article>
+
+            
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=%2fposts%2fsvg2pngcode%2f - Font-Awesome-SVG-PNG%20%e6%80%9d%e8%b7%af%e5%88%86%e6%9e%90 by @agrimon15431507"><span class="icon-twitter"> tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+            
+
+            
+                <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'Agrimonia'; 
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.github.com/agrimonia">
+        <i class="fa fa-github-square"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2018 <i class="fa fa-heart" aria-hidden="true"></i> Agrimonia
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-110889370-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+<script>
+var baiduAnalytics = '85825879859e2b4eb41c5269336a4871';
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?" + baiduAnalytics;
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+    </body>
+</html>
