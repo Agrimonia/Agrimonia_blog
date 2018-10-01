@@ -1,5 +1,5 @@
 # Site settings
-baseurl = "agrimonia.me"
+baseurl = ""
 languageCode = "en"
 title = "Agrimonia’s blog"
 theme = "cactus-plus"
