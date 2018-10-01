@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Svg on Agrimonia’s blog</title>
+    <link>https://agrimonia.me/tags/svg/</link>
+    <description>Recent content in Svg on Agrimonia’s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 09 Jun 2018 00:03:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://agrimonia.me/tags/svg/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Font-Awesome-SVG-PNG 思路分析</title>
+      <link>https://agrimonia.me/posts/svg2pngcode/</link>
+      <pubDate>Sat, 09 Jun 2018 00:03:55 +0800</pubDate>
+      
+      <guid>https://agrimonia.me/posts/svg2pngcode/</guid>
+      <description>Font-Awesome-SVG-PNG 思路分析 微软俱乐部的 Hackathon 的时候写了 iCon4U 这个项目。因为需要出 png 格式的图，参考了 Font-Awesome-SVG-PNG 这个项目，大致看了一下它的源码，写一写我的理解。 现在的代码比较复</description>
+    </item>
+    
+  </channel>
+</rss>
