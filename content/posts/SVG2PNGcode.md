@@ -53,7 +53,7 @@ function generateSvg(name, params) {
   return new Promise(function(resolve, reject) {
     var outSvg = fs.createWriteStream(pathModule.join(svgFolder, name + '.svg'));
     svgo.optimize(getIconSvg(params), function(result) {
-      outSvg.write('<?xml version="1.0" encoding="utf-8"?>' +'\n');	
+      outSvg.write('<?xml version="1.0" encoding="utf-8"?>' +'\n');
       outSvg.end(result.data);
       resolve();
     });
@@ -74,7 +74,7 @@ function getIconSvg(params, size) {
   const BASE_WIDTH = PIXEL_WIDTH * PIXEL;
   const BASE_HEIGHT = PIXEL_HEIGHT * PIXEL;
   
-  var options = optionsForSize(PIXEL_WIDTH, PIXEL_HEIGHT, 
+  var options = optionsForSize(PIXEL_WIDTH, PIXEL_HEIGHT,
     parseInt((BASE_WIDTH / BASE_HEIGHT) * size), size,
     params.addPadding);
 

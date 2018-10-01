@@ -41,13 +41,13 @@ allUser: {
 
 如果 Schema 里我们需要的数据在内层 ，比如 `data.config.userConfig.avatar`，这样写起来更方便了。
 
-如果我们只需要部分数据，比如我不需要 `name = 'robot'` 的 user，这时候`update: data => data.allUser.filter(user => user.name != 'robot')` 是很方便的过滤方式（用 `result() `也行）。
+如果我们只需要部分数据，比如我不需要 `name = 'robot'` 的 user，这时候`update: data => data.allUser.filter(user => user.name != 'robot')` 是很方便的过滤方式（用 `result()` 也行）。
 
 ## 临时 query
 
 如果我只需要临时发起一个 query，只需要像 mutation 那样结合 async/await 来用：
 
-```
+```javascript
 this.$apollo.query({
     query: xxx
 })
@@ -68,4 +68,3 @@ Smart Query 支持全部的 [graphql-query-options](https://www.apollographql.co
 `pollInterval`: The interval in milliseconds at which you want to start polling. See [options.pollInterval](https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-config-options-pollInterval).
 
 `context`: Everything under the `context` object gets passed directly to your network chain. This can be used to do things like **set `headers` on HTTP requests from props**, **control which endpoint you send a query to**, and so much more depending on what links your app is using. See [ApolloLink-context](https://www.apollographql.com/docs/link/overview.html#context).
-
