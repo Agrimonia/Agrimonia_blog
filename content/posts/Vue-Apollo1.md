@@ -8,7 +8,7 @@ draft = false
 
 # Vue-Apollo 官方文档拾遗
 
-实习期间做的 Vue 项目因为用到了 GraphQL，自然接触了 Vue-Apollo。Vue-Apollo 的文档用起来没有很大问题，但它属于 Apollo Client 的实现，如果你没有对照 Apollo Client 的文档看，可能会觉得它有点语焉不详，下面是我使用时总结的一些经验。由于 Vue-Apollo 没有中文文档，下文尽量采用原词来保证指代明确。
+实习期间做的 Vue 项目因为用到了 GraphQL，自然接触了 Vue-Apollo。Vue-Apollo 的文档用起来没有很大问题，但它属于 Apollo Client 的实现，如果你没有对照 Apollo Client 的文档看，可能会觉得它有点语焉不详，下面是我使用时总结的一些经验。~~由于 Vue-Apollo 没有中文文档，~~下文尽量采用原词来保证指代明确。
 
 ## 数据更新
 
