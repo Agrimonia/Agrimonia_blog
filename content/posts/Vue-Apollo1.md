@@ -16,7 +16,7 @@ draft = false
 
 ## 更改 Apollo 返回的数据
 
-Apollo 返回的数据是只读的，但是经常需要对其进行更改。这种情况可以通过做一次深拷贝来解决，比如 loadsh 的 cloneDeep() 或者 `JSON.parse(JSON.stringfy())`。
+Apollo 返回的数据是只读的，但是经常需要对其进行更改。这种情况可以通过做一次深拷贝来解决，比如 loadsh 的 `cloneDeep()`。
 
 ## 避免 query 结果的相互依赖
 
