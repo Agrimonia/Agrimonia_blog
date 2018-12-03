@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Agrimonia’s blog</title>
+    <title>Categories on Agrimonia’s blog</title>
     <link>https://agrimonia.me/categories/</link>
-    <description>Recent content on Agrimonia’s blog</description>
+    <description>Recent content in Categories on Agrimonia’s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 01 Oct 2018 15:54:37 +0800</lastBuildDate>
@@ -12,16 +12,20 @@
     
     
     <item>
-      <title>About</title>
-      <link>https://agrimonia.me/about/</link>
+      <title></title>
+      <link>https://agrimonia.me/categories/</link>
       <pubDate>Mon, 01 Oct 2018 15:54:37 +0800</pubDate>
       
-      <guid>https://agrimonia.me/about/</guid>
-      <description>About 关于我 在 电子科技大学 软件学院就读大三 邮箱：lyclyc17@gmail.com 找实习中 友情链接 焦糖工作室 薇拉航线 博客-和你一样棒的好青年</description>
+      <guid>https://agrimonia.me/categories/</guid>
+      <description></description>
     </item>
     
-  </channel>
-</rss> <guid>https://agrimonia.me/categories/devops/</guid>
+    <item>
+      <title>Devops</title>
+      <link>https://agrimonia.me/categories/devops/</link>
+      <pubDate>Sat, 30 Jun 2018 22:37:19 +0800</pubDate>
+      
+      <guid>https://agrimonia.me/categories/devops/</guid>
       <description></description>
     </item>
     
